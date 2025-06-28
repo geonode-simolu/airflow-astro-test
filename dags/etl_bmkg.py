@@ -14,7 +14,7 @@ with DAG(
     tags=["geocourse"]
 ) as dag:
     
-    EXPORT_DIR_PATH = "/opt/airflow/include/output/bmkg/"
+    EXPORT_DIR_PATH = "/tmp/bmkg/"
     CURRENT_DATE = datetime.today().strftime("%Y-%m-%d")
     
     get_bmkg_data = HttpOperator(
@@ -97,7 +97,7 @@ with DAG(
     send_email_with_csv = EmailOperator(
         task_id="send_bmkg_data_email",
         conn_id="natural_earth_email",
-        to="test.email513@gmail.com",
+        to="azfaiz2022@gmail.com",
         from_email="ertim.geoportal@gmail.com",
         subject="Airflow: Daily BMKG Data CSV",
         html_content="""
